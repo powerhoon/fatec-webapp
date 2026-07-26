@@ -1,0 +1,11 @@
+{
+  "name": "Weekly Digest",
+  "nodes": [
+    {"id": "1", "name": "Schedule Trigger", "type": "n8n-nodes-base.scheduleTrigger", "parameters": {"rule": {"interval": [{"field": "weeks", "hoursInterval": 168}]}}, "position": [0, 300]},
+    {"id": "2", "name": "Get Posts", "type": "n8n-nodes-base.httpRequest", "parameters": {"url": "https://fatec.co.kr/posts/index.json", "options": {}}, "position": [250, 300]},
+    {"id": "3", "name": "Get Subscribers", "type": "n8n-nodes-base.supabase", "parameters": {"tableId": "newsletter_subscribers", "operation": "getAll", "returnAll": true}, "position": [250, 500]},
+    {"id": "4", "name": "Build HTML", "type": "n8n-nodes-base.code", "parameters": {"jsCode": "const posts = $input.first().json; let html = '<h2>Fatec System Weekly Digest</h2>'; posts.slice(0,5).forEach(p => { html += '<h3><a href=\"' + p.link + '\">' + p.title + '</a></h3><p>' + (p.excerpt || '') + '</p>'; }); return [{html: html}];"}, "position": [500, 300]},
+    {"id": "5", "name": "Send Email", "type": "n8n-nodes-base.emailSend", "parameters": {"fromEmail": "digest@fatec.co.kr", "subject": "Fatec System Weekly Digest", "htmlBody": "={{ $json.html }}"}, "position": [750, 300]}
+  ],
+  "connections": {"1": {"main": [[{"node": "2", "index": 0}]]}, "2": {"main": [[{"node": "4", "index": 0}]]}, "3": {"main": []}, "4": {"main": [[{"node": "5", "index": 0}]]}}
+}

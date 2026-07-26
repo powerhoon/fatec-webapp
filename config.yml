@@ -1,0 +1,79 @@
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: 'Create {{collection}} "{{slug}}"'
+    update: 'Update {{collection}} "{{slug}}"'
+    delete: 'Delete {{collection}} "{{slug}}"'
+    uploadMedia: 'Upload "{{path}}"'
+    deleteMedia: 'Delete "{{path}}"'
+
+local_backend: false
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    folder: "posts"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ['date', 'title']
+    fields:
+      - { name: "title", label: "Title", widget: "string", hint: "The headline of the blog post" }
+      - { name: "date", label: "Publish Date", widget: "datetime", default: "{{now}}" }
+      - { name: "slug", label: "Slug", widget: "string", hint: "URL-friendly identifier", required: true }
+      - { name: "author", label: "Author", widget: "string", default: "Fatec System" }
+      - { name: "category", label: "Category", widget: "select", options: ["Technology", "Company News", "Products", "DEPRAG", "WITTENSTEIN alpha", "Engineering Service"], default: "Company News" }
+      - { name: "featured_image", label: "Featured Image", widget: "image", required: false }
+      - { name: "excerpt", label: "Excerpt", widget: "text", hint: "Short summary shown in the blog listing", required: false }
+      - { name: "body", label: "Body", widget: "markdown" }
+
+  - name: "news"
+    label: "News & Updates"
+    label_singular: "News Item"
+    folder: "news"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ['date', 'title']
+    fields:
+      - { name: "title", label: "Headline", widget: "string" }
+      - { name: "date", label: "Publish Date", widget: "datetime" }
+      - { name: "slug", label: "Slug", widget: "string", required: true }
+      - { name: "category", label: "Category", widget: "select", options: ["Product Announcement", "Partnership", "Technology Milestone", "Corporate", "Event"], default: "Corporate" }
+      - { name: "body", label: "Body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pages"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - label: "Home Page Hero"
+        name: "home"
+        file: "content/home.md"
+        fields:
+          - { name: "hero_title", label: "Hero Title", widget: "string", default: "정밀 조립과 구동 기술의 하나의 체인" }
+          - { name: "hero_subtitle", label: "Hero Subtitle", widget: "text", default: "Fatec System은 DEPRAG와 WITTENSTEIN alpha 제품을 한국 산업 현장에 통합 제공합니다." }
+          - { name: "hero_image", label: "Hero Background Image", widget: "image", required: false }
+
+  - name: "products"
+    label: "Products"
+    label_singular: "Product"
+    folder: "products"
+    create: true
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Product Name", widget: "string" }
+      - { name: "brand", label: "Brand", widget: "select", options: ["DEPRAG", "WITTENSTEIN alpha", "Fatec System"], default: "DEPRAG" }
+      - { name: "category", label: "Category", widget: "string" }
+      - { name: "description", label: "Description", widget: "text" }
+      - { name: "specs", label: "Specifications", widget: "object", summary: "{{fields.specs}}", collapsed: true }
+      - { name: "body", label: "Body", widget: "markdown" }

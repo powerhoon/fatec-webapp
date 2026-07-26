@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공학 계산기 | Fatec System - Torque, Force, Power</title>
+  <meta name="description" content="체결 토크/축력 계산, 모터 파워 계산, 단위 변환 - Fatec System 공학 계산기">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="/" class="logo-link" aria-label="Fatec System">
+        <svg class="logo-svg" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="38" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="currentColor">Fatec System</text>
+        </svg>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <ul class="nav-list">
+          <li><a href="/deprag.html">DEPRAG</a></li>
+          <li><a href="/wittenstein.html">WITTENSTEIN alpha</a></li>
+          <li><a href="/about.html">Fatec System</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/calculator/" class="active">계산기</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="searchToggle" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="7"/><line x1="14" y1="14" x2="18" y2="18"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero" style="background:linear-gradient(135deg,#0d1f3a 0%,#1a3a5c 100%);">
+      <div class="container">
+        <h1>공학 계산기</h1>
+        <p>Torque, Force, Power & Speed — 체결 공정 및 모션 제어 엔지니어링 계산</p>
+      </div>
+    </section>
+
+    <section class="calc-section container">
+      <div class="calc-tabs">
+        <button class="calc-tab active" data-target="calc-torque-force">Torque → Force</button>
+        <button class="calc-tab" data-target="calc-force-torque">Force → Torque</button>
+        <button class="calc-tab" data-target="calc-power-speed">Power & Speed</button>
+      </div>
+
+      <!-- Tab 1: Torque → Force -->
+      <div class="calc-panel active" id="calc-torque-force">
+        <h3>토크 → 축력 계산</h3>
+        <p>체결 토크(T)와 반경(r)으로 체결력(F) 계산: <strong>F = T / r</strong></p>
+        <div class="calc-inputs">
+          <label>토크 (T): <input type="number" id="tf-torque" value="10" step="0.1"> N·m</label>
+          <label>반경 (r): <input type="number" id="tf-radius" value="100" step="0.1"> 
+            <label><input type="radio" name="tf-unit" value="mm" checked> mm</label>
+            <label><input type="radio" name="tf-unit" value="cm"> cm</label>
+            <label><input type="radio" name="tf-unit" value="m"> m</label>
+          </label>
+        </div>
+        <div class="calc-result">값을 입력하세요</div>
+        <p class="calc-formula">T = F × r (토크 = 힘 × 반경)</p>
+      </div>
+
+      <!-- Tab 2: Force → Torque -->
+      <div class="calc-panel" id="calc-force-torque">
+        <h3>축력 → 토크 계산</h3>
+        <p>체결력(F)과 반경(r)으로 필요 토크(T) 계산: <strong>T = F × r</strong></p>
+        <div class="calc-inputs">
+          <label>힘 (F): <input type="number" id="ft-force" value="1000" step="0.1"> N</label>
+          <label>반경 (r): <input type="number" id="ft-radius" value="50" step="0.1">
+            <label><input type="radio" name="ft-unit" value="mm" checked> mm</label>
+            <label><input type="radio" name="ft-unit" value="cm"> cm</label>
+            <label><input type="radio" name="ft-unit" value="m"> m</label>
+          </label>
+        </div>
+        <div class="calc-result">값을 입력하세요</div>
+      </div>
+
+      <!-- Tab 3: Power & Speed -->
+      <div class="calc-panel" id="calc-power-speed">
+        <h3>파워 & 속도 계산</h3>
+        <p>토크(T)와 회전속도(N)로 소요 동력(P) 계산: <strong>P = T × N × 2π / 60000</strong></p>
+        <div class="calc-inputs">
+          <label>토크 (T): <input type="number" id="ps-torque" value="10" step="0.1"> N·m</label>
+          <label>회전속도 (N): <input type="number" id="ps-rpm" value="3000" step="1"> rpm</label>
+        </div>
+        <div class="calc-result">값을 입력하세요</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>Fatec System</h4>
+        <p>DEPRAG와 WITTENSTEIN alpha 기술의 한국 기술 파트너</p>
+      </div>
+      <div class="footer-col">
+        <h4>계산기</h4>
+        <ul>
+          <li><a href="/calculator/#calc-torque-force">Torque → Force</a></li>
+          <li><a href="/calculator/#calc-force-torque">Force → Torque</a></li>
+          <li><a href="/calculator/#calc-power-speed">Power & Speed</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>바로가기</h4>
+        <ul>
+          <li><a href="/deprag.html">DEPRAG</a></li>
+          <li><a href="/wittenstein.html">WITTENSTEIN</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Fatec System. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/calculator.js"></script>
+</body>
+</html>
