@@ -112,9 +112,13 @@
     var imgs = slider.querySelectorAll('img');
     var idx = 0;
     setInterval(function() {
-      imgs[idx].classList.remove('active');
+      var cur = imgs[idx];
       idx = (idx + 1) % imgs.length;
-      imgs[idx].classList.add('active');
+      var next = imgs[idx];
+      cur.classList.add('exit');
+      cur.classList.remove('active');
+      next.classList.add('active');
+      setTimeout(function() { cur.classList.remove('exit'); }, 700);
     }, 4000);
   }
 
