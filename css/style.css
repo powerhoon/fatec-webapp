@@ -338,14 +338,15 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); letter-spacing: -0.5px; }
 .story-text { color: var(--text); line-height: 1.7; margin-bottom: 4px; }
 .story-image {
   position: relative;
-  border-radius: var(--radius);
+  border-radius: var(--radius) 0 0 var(--radius);
   overflow: hidden;
-  display: flex; justify-content: flex-end;
+  display: flex;
+  margin-right: calc(100% + 30px - 50vw);
 }
 .story-image img {
-  width: 700px; height: 500px; max-width: 100%;
+  width: 100%; height: 500px;
   object-fit: cover;
-  border-radius: var(--radius);
+  border-radius: var(--radius) 0 0 var(--radius);
   transition: transform var(--transition-slow);
 }
 .story-image:hover img { transform: scale(1.03); }
@@ -675,6 +676,19 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); letter-spacing: -0.5px; }
   .partner-card h3 { font-size: 22px; }
 
   .global-header { flex-direction: column; align-items: flex-start; }
+
+  .story-card {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .story-image {
+    margin-right: 0;
+    border-radius: var(--radius);
+  }
+  .story-image img {
+    height: 300px;
+    border-radius: var(--radius);
+  }
 }
 
 /* ── Print ── */
