@@ -93,6 +93,34 @@
 
   // ══════════ ASML-style Count-Up Animation ══════════
   var glanceGrid = document.getElementById('glanceGrid');
+  var glanceBg = document.getElementById('glanceBg');
+  var glanceSection = document.getElementById('glanceSection');
+
+  if (glanceSection && glanceBg) {
+    function updateZoom() {
+      var rect = glanceSection.getBoundingClientRect();
+      var sectionTop = rect.top;
+      var sectionHeight = rect.height;
+      var viewHeight = window.innerHeight;
+
+      // Calculate how much of the section is visible (0 to 1)
+      var visibleTop = Math.max(0, 0 - sectionTop);
+      var progress = Math.min(1, visibleTop / (sectionHeight * 0.5));
+
+      // Scale from 1.15 down to 1.0 as user scrolls
+      var scale = 1.15 - (progress * 0.15);
+      glanceBg.style.transform = 'scale(' + scale + ')';
+
+      // Fade overlay opacity
+      var overlay = glanceSection.querySelector('.glance-overlay');
+      if (overlay) {
+        overlay.style.opacity = Math.min(1, progress * 1.3);
+      }
+    }
+    window.addEventListener('scroll', updateZoom, { passive: true });
+    updateZoom();
+  }
+
   if (glanceGrid) {
     var counted = false;
     function countUp(el) {
