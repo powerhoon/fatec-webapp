@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DEPRAG | Fatec System</title>
+  <meta name="description" content="DEPRAG screwdriving, feeding, automation, air motors, torque measurement">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,90 +12,75 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <header class="site-header" id="siteHeader">
-    <div class="header-inner">
-      <a href="/" class="logo-link" aria-label="Fatec System">
-        <svg class="logo-svg" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="38" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="currentColor">Fatec System</text>
-        </svg>
-      </a>
-      <nav class="main-nav" id="mainNav">
-        <ul class="nav-list">
-          <li><a href="/deprag.html" class="active">DEPRAG</a></li>
-          <li><a href="/wittenstein.html">WITTENSTEIN alpha</a></li>
-          <li><a href="/about.html">Fatec System</a></li>
-          <li><a href="/news.html">News</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="header-actions">
-        <button class="icon-btn" id="searchToggle" aria-label="Search">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="7"/><line x1="14" y1="14" x2="18" y2="18"/></svg>
-        </button>
-        <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="logo-link" aria-label="Fatec System"><svg class="logo-svg" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg"><text x="0" y="38" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="currentColor">Fatec System</text></svg></a>
+    <nav class="main-nav" id="mainNav"><ul class="nav-list"><li><a href="/deprag.html" class="active">DEPRAG</a></li><li><a href="/wittenstein.html">WITTENSTEIN alpha</a></li><li><a href="/about.html">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="7"/><line x1="14" y1="14" x2="18" y2="18"/></svg></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="search-bar" id="searchBar"><input type="text" placeholder="DEPRAG 제품 검색..." aria-label="Search"></div>
+</header>
+
+<section class="page-header" style="background:linear-gradient(135deg,#1a3a5c,#0d1f3a);">
+  <div class="container">
+    <nav aria-label="Breadcrumbs"><ul class="breadcrumbs"><li><a href="/">Home</a></li><li>DEPRAG</li></ul></nav>
+    <h1>DEPRAG</h1>
+    <p>Intelligent screwdriving and automation technology from Germany</p>
+  </div>
+</section>
+
+<section class="section section-light">
+  <div class="container">
+    <div class="brand-hero">
+      <div class="brand-hero-text">
+        <h2>DEPRAG — Intelligent Automation</h2>
+        <p>독일의 정밀 조립 기술 기업. Screwdriving, feeding, automation, air motors, torque measurement까지 하나의 process chain으로 통합 제공합니다. Fatec System은 DEPRAG의 한국 공식 파트너입니다.</p>
       </div>
+      <div class="brand-hero-badge"><span class="brand-badge">DEPRAG</span><span class="brand-tagline">Intelligent Automation</span></div>
     </div>
-    <div class="search-bar" id="searchBar"><input type="text" placeholder="DEPRAG 제품 검색..." aria-label="Search"></div>
-  </header>
+  </div>
+</section>
 
-  <section class="page-header">
-    <div class="container">
-      <nav aria-label="Breadcrumbs"><ul class="breadcrumbs"><li><a href="/">Home</a></li><li>DEPRAG</li></ul></nav>
-      <h1>DEPRAG 제품군</h1>
-      <p>독일의 정밀 조립 기술. Screwdriving, feeding, automation, air motors를 통합 제공합니다.</p>
+<section class="section section-light" style="padding-top:0;" id="screwdriving">
+  <div class="container">
+    <h2 class="section-title">5대 제품군</h2>
+    <div class="product-grid">
+      <article class="product-card product-card-full">
+        <div class="product-card-header"><div class="product-card-num">01</div><h3>Screwdriving Technology</h3></div>
+        <div class="product-card-body"><p class="product-desc">Handheld, stationary, system solution — 통합 fastening process chain</p></div>
+      </article>
+      <article class="product-card product-card-full" id="feeding">
+        <div class="product-card-header"><div class="product-card-num">02</div><h3>Feeding Technology</h3></div>
+        <div class="product-card-body"><p class="product-desc">Vibratory, sword, step feeder — 안정적인 parts presentation</p></div>
+      </article>
+      <article class="product-card product-card-full" id="automation">
+        <div class="product-card-header"><div class="product-card-num">03</div><h3>Automation</h3></div>
+        <div class="product-card-body"><p class="product-desc">Assembly line, semi-auto workstation — 생산 자동화 솔루션</p></div>
+      </article>
+      <article class="product-card product-card-full" id="air-motors">
+        <div class="product-card-header"><div class="product-card-num">04</div><h3>Air Motors</h3></div>
+        <div class="product-card-body"><p class="product-desc">Pneumatic motor — compact, powerful, industrial-grade</p></div>
+      </article>
+      <article class="product-card product-card-full" id="torque">
+        <div class="product-card-header"><div class="product-card-num">05</div><h3>Torque Measurement</h3></div>
+        <div class="product-card-body"><p class="product-desc">Precision torque measurement & documentation</p></div>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-light">
-    <div class="container">
-      <div class="brand-hero">
-        <div class="brand-hero-text">
-          <h2>DEPRAG — Intelligent Automation</h2>
-          <p>독일의 정밀 조립 기술 기업. Handheld부터 system solution까지 하나의 process chain으로 통합 제안합니다.</p>
-        </div>
-        <div class="brand-hero-badge"><span class="brand-badge">DEPRAG</span><span class="brand-tagline">Intelligent Automation</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-light" style="padding-top:0;" id="screwdriving">
-    <div class="container">
-      <h2 class="section-title">5대 제품군</h2>
-      <div class="product-grid">
-        <article class="product-card product-card-full">
-          <div class="product-card-header"><div class="product-card-num">01</div><h3>Screwdriving Technology</h3></div>
-          <div class="product-card-body"><p class="product-desc">Handheld, stationary, system solution — 통합 fastening process chain</p></div>
-        </article>
-        <article class="product-card product-card-full" id="feeding">
-          <div class="product-card-header"><div class="product-card-num">02</div><h3>Feeding Technology</h3></div>
-          <div class="product-card-body"><p class="product-desc">Vibratory, sword, step feeder — 안정적인 parts presentation</p></div>
-        </article>
-        <article class="product-card product-card-full" id="automation">
-          <div class="product-card-header"><div class="product-card-num">03</div><h3>Automation</h3></div>
-          <div class="product-card-body"><p class="product-desc">Assembly line, semi-auto workstation — 생산 자동화 솔루션</p></div>
-        </article>
-        <article class="product-card product-card-full" id="air-motors">
-          <div class="product-card-header"><div class="product-card-num">04</div><h3>Air Motors</h3></div>
-          <div class="product-card-body"><p class="product-desc">Pneumatic motor — compact, powerful, industrial-grade</p></div>
-        </article>
-        <article class="product-card product-card-full" id="torque">
-          <div class="product-card-header"><div class="product-card-num">05</div><h3>Torque Measurement</h3></div>
-          <div class="product-card-body"><p class="product-desc">Precision torque measurement & documentation</p></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <nav class="footer-col" aria-label="Products"><h2>PRODUCTS</h2><ul><li><a href="/deprag.html">DEPRAG</a></li><li><a href="/wittenstein.html">WITTENSTEIN alpha</a></li><li><a href="/about.html">Engineering Service</a></li></ul></nav>
-      <nav class="footer-col" aria-label="DEPRAG"><h2>DEPRAG</h2><ul><li><a href="/deprag.html#screwdriving">Screwdriving</a></li><li><a href="/deprag.html#feeding">Feeding</a></li><li><a href="/deprag.html#automation">Automation</a></li><li><a href="/deprag.html#air-motors">Air Motors</a></li></ul></nav>
-      <nav class="footer-col" aria-label="WITTENSTEIN"><h2>WITTENSTEIN alpha</h2><ul><li><a href="/wittenstein.html#gearboxes">Gearboxes</a></li><li><a href="/wittenstein.html#servo-actuators">Servo Actuators</a></li><li><a href="/wittenstein.html#linear-systems">Linear Systems</a></li></ul></nav>
-      <nav class="footer-col" aria-label="Company"><h2>COMPANY</h2><ul><li><a href="/about.html">About Fatec System</a></li><li><a href="/contact.html">Contact</a></li></ul></nav>
-      <div class="footer-col footer-social"><h2>CONNECT</h2><ul class="social-links"><li><a href="#" aria-label="LinkedIn">LinkedIn</a></li><li><a href="#" aria-label="Email">Email</a></li></ul></div>
-    </div>
-    <div class="footer-bottom container"><p>© 2026 Fatec System. All rights reserved. DEPRAG and WITTENSTEIN alpha are trademarks of their respective owners.</p></div>
-  </footer>
-  <script src="/js/main.js"></script>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <nav class="footer-col" aria-label="DEPRAG"><h2>DEPRAG</h2><ul><li><a href="/deprag.html#screwdriving">Screwdriving</a></li><li><a href="/deprag.html#feeding">Feeding</a></li><li><a href="/deprag.html#automation">Automation</a></li><li><a href="/deprag.html#air-motors">Air Motors</a></li></ul></nav>
+    <nav class="footer-col" aria-label="WITTENSTEIN"><h2>WITTENSTEIN alpha</h2><ul><li><a href="/wittenstein.html#gearboxes">Gearboxes</a></li><li><a href="/wittenstein.html#servo-actuators">Servo Actuators</a></li><li><a href="/wittenstein.html#linear-systems">Linear Systems</a></li></ul></nav>
+    <nav class="footer-col" aria-label="Company"><h2>COMPANY</h2><ul><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/blog/">Blog</a></li></ul></nav>
+    <div class="footer-col footer-social"><h2>SOCIAL MEDIA</h2><ul class="social-links"><li><a href="#" aria-label="LinkedIn">LinkedIn</a></li><li><a href="#" aria-label="YouTube">YouTube</a></li></ul></div>
+  </div>
+  <div class="footer-bottom container"><p>&copy; 2026 Fatec System. DEPRAG and WITTENSTEIN alpha are trademarks of their respective owners.</p></div>
+</footer>
+<script src="/js/main.js"></script>
 </body>
 </html>
