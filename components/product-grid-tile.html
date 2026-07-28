@@ -1,0 +1,33 @@
+<!--
+  Component: Tile-Based Product Grid
+  Usage: 3-column asymmetric grid with large tile, standard tiles
+  Data: pass product items as children
+  CSS: .product-grid-tiles, .product-tile, .product-tile-large, .product-tile-wide
+-->
+<div class="product-grid-tiles anim-stagger">
+  <!-- Large tile (spans 2 cols, 2 rows) -->
+  <div class="product-tile product-tile-large">
+    <div class="tile-icon">
+      <!-- Slot: icon SVG -->
+    </div>
+    <div class="tile-body">
+      <h3><!-- Slot: product title --></h3>
+      <p><!-- Slot: product description --></p>
+      <span class="tile-tag tile-tag-deprag"><!-- Slot: brand tag --></span>
+    </div>
+  </div>
+
+  <!-- Standard tile -->
+  <div class="product-tile">
+    <div class="tile-icon">
+      <!-- Slot: icon SVG -->
+    </div>
+    <div class="tile-body">
+      <h3><!-- Slot: product title --></h3>
+      <p><!-- Slot: product description --></p>
+      <span class="tile-tag tile-tag-wittenstein"><!-- Slot: brand tag --></span>
+    </div>
+  </div>
+
+  <!-- More tiles... -->
+</div>

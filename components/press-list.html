@@ -1,0 +1,20 @@
+<!--
+  Component: Press Release List
+  Usage: Simple list with date, title, arrow
+  CSS: .press-section, .press-list
+-->
+<section class="press-section">
+  <div class="container">
+    <div class="section-header-row anim-fade-up">
+      <h2><!-- Slot: title --></h2>
+      <a href="#" class="btn-link"><!-- Slot: view all link --> <span class="arrow">→</span></a>
+    </div>
+    <ul class="press-list anim-fade-up">
+      <li><a href="#">
+        <span class="press-date"><!-- Slot: date --></span>
+        <span class="press-title"><!-- Slot: headline --></span>
+        <span class="press-arrow">→</span>
+      </a></li>
+    </ul>
+  </div>
+</section>
