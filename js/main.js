@@ -91,17 +91,18 @@
       .catch(function() { blogContainer && blogContainer.remove(); });
   }
 
-  // ══════════ ASML Split Reveal ══════════
+  // ══════════ At a Glance ══════════
   var glanceSection = document.getElementById('glanceSection');
   var glanceGrid = document.getElementById('glanceGrid');
 
   if (glanceSection) {
-    var splitObserver = new IntersectionObserver(function(entries) {
+    var obs = new IntersectionObserver(function(entries) {
       if (entries[0].isIntersecting) {
         glanceSection.classList.add('active');
+        glanceSection.classList.add('zoomed');
       }
-    }, { threshold: 0.25 });
-    splitObserver.observe(glanceSection);
+    }, { threshold: 0.15 });
+    obs.observe(glanceSection);
   }
 
   // Count-up
@@ -126,7 +127,7 @@
     var observer = new IntersectionObserver(function(entries) {
       if (entries[0].isIntersecting && !counted) {
         counted = true;
-        glanceGrid.querySelectorAll('.glance-number').forEach(function(el) {
+        glanceGrid.querySelectorAll('.glance-num').forEach(function(el) {
           setTimeout(function() { countUp(el); }, 200);
         });
       }
