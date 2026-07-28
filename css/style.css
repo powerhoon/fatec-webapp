@@ -536,22 +536,24 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); letter-spacing: -0.5px; }
 /* ── Glance Section (ASML parallax zoom reveal) ── */
 .glance-section {
   position: relative; overflow: hidden;
-  min-height: 70vh; padding: 0;
+  min-height: 80vh; padding: 0;
   background: #0a0c10;
 }
 .glance-bg {
   position: absolute; inset: 0; z-index: 0;
-  will-change: transform;
+  overflow: hidden;
 }
 .glance-bg img {
-  width: 100%; height: 100%; object-fit: cover;
-  transform: scale(1.15);
+  width: 100%; height: 110%; object-fit: cover;
+  transform: scale(1.25);
+  transform-origin: center center;
   transition: transform 0.1s linear;
 }
 .glance-overlay {
   position: relative; z-index: 2;
-  padding: 120px 0; opacity: 0.85;
-  background: linear-gradient(to top, rgba(10,12,16,0.95) 0%, rgba(10,12,16,0.4) 50%, rgba(10,12,16,0.1) 100%);
+  padding: 140px 0; opacity: 0.7;
+  background: linear-gradient(to top, rgba(10,12,16,0.92) 0%, rgba(10,12,16,0.35) 50%, rgba(10,12,16,0.05) 100%);
+  transition: opacity 0.3s;
 }
 .glance-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;

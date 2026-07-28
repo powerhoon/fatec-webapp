@@ -107,8 +107,8 @@
       var visibleTop = Math.max(0, 0 - sectionTop);
       var progress = Math.min(1, visibleTop / (sectionHeight * 0.5));
 
-      // Scale from 1.15 down to 1.0 as user scrolls
-      var scale = 1.15 - (progress * 0.15);
+      // Scale from 1.25 down to 1.0 as user scrolls
+      var scale = 1.25 - (progress * 0.25);
       glanceBg.style.transform = 'scale(' + scale + ')';
 
       // Fade overlay opacity
