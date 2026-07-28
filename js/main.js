@@ -101,21 +101,19 @@
       var rect = glanceSection.getBoundingClientRect();
       var sectionTop = rect.top;
       var sectionHeight = rect.height;
-      var viewHeight = window.innerHeight;
 
-      // Calculate how much of the section is visible (0 to 1)
+      // Progress: 0 (just entering) → 1 (fully scrolled through)
       var visibleTop = Math.max(0, 0 - sectionTop);
-      var progress = Math.min(1, visibleTop / (sectionHeight * 0.5));
+      var progress = Math.min(1, (visibleTop + window.innerHeight * 0.3) / sectionHeight);
 
-      // Scale from 1.25 down to 1.0 as user scrolls
-      var scale = 1.25 - (progress * 0.25);
-      glanceBg.style.transform = 'scale(' + scale + ')';
+      // Scale from 1.0 → 1.25 as user scrolls (small → big)
+      var scale = 1.0 + (progress * 0.25);
+      var img = glanceBg.querySelector('img');
+      if (img) img.style.transform = 'scale(' + scale + ')';
 
-      // Fade overlay opacity
+      // Overlay fades in
       var overlay = glanceSection.querySelector('.glance-overlay');
-      if (overlay) {
-        overlay.style.opacity = Math.min(1, progress * 1.3);
-      }
+      if (overlay) overlay.style.opacity = 0.5 + (progress * 0.5);
     }
     window.addEventListener('scroll', updateZoom, { passive: true });
     updateZoom();
