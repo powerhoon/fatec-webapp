@@ -91,45 +91,20 @@
       .catch(function() { blogContainer && blogContainer.remove(); });
   }
 
-  // ══════════ At a Glance ══════════
+  // ══════════ At a Glance — Mouse Parallax ══════════
+  var glanceImg = document.getElementById('glanceImg');
   var glanceSection = document.getElementById('glanceSection');
-  if (glanceSection) {
-    var counted = false;
-    function countUp(el) {
-      var target = parseInt(el.getAttribute('data-target'), 10);
-      var dur = 1800, start = performance.now();
-      function tick(now) {
-        var p = Math.min(1, (now - start) / dur);
-        el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * target).toLocaleString();
-        if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = target.toLocaleString();
-      }
-      requestAnimationFrame(tick);
-    }
-    var obs = new IntersectionObserver(function(entries) {
-      if (entries[0].isIntersecting && !counted) {
-        counted = true;
-        glanceSection.querySelectorAll('.glance-num').forEach(function(el) {
-          setTimeout(function() { countUp(el); }, 150);
-        });
-      }
-    }, { threshold: 0.3 });
-    obs.observe(glanceSection);
-  }
-
-  // 3D Tilt on cards
-  document.querySelectorAll('.glance-card').forEach(function(card) {
-    card.addEventListener('mousemove', function(e) {
-      var rect = card.getBoundingClientRect();
+  if (glanceImg && glanceSection) {
+    glanceSection.addEventListener('mousemove', function(e) {
+      var rect = glanceSection.getBoundingClientRect();
       var x = (e.clientX - rect.left) / rect.width - 0.5;
       var y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = 
-        'translateY(-6px) scale(1.03) rotateX(' + (-y * 8) + 'deg) rotateY(' + (x * 12) + 'deg)';
+      glanceImg.style.transform = 'scale(1.08) translate(' + (x * -20) + 'px, ' + (y * -15) + 'px)';
     });
-    card.addEventListener('mouseleave', function() {
-      card.style.transform = '';
+    glanceSection.addEventListener('mouseleave', function() {
+      glanceImg.style.transform = 'scale(1.05)';
     });
-  });
+  }
 
   function esc(t) {
     if (!t) return '';

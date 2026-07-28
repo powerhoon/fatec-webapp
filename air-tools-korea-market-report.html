@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEPRAG Air Tools — Korea Market Entry Report v1.0</title>
+<style>
+:root {
+  --deprag-red: #C8102E;
+  --deprag-dark: #1a1a2e;
+  --deprag-blue: #16213e;
+  --bg: #0f0f1a;
+  --card: #1a1a2e;
+  --text: #e0e0e0;
+  --muted: #888;
+  --accent: #e94560;
+  --gold: #f0c040;
+  --green: #2ecc71;
+  --border: #2a2a3e;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height:1.7;
+}
+.hero {
+  background: linear-gradient(135deg, var(--deprag-dark) 0%, #0a0a1e 100%);
+  padding: 80px 40px;
+  text-align:center;
+  border-bottom: 4px solid var(--deprag-red);
+  position:relative;
+  overflow:hidden;
+}
+.hero::before {
+  content: '';
+  position:absolute; top:0; left:0; right:0; bottom:0;
+  background: radial-gradient(circle at 30% 50%, rgba(200,16,46,0.15) 0%, transparent 70%);
+}
+.hero h1 {
+  font-size: 2.6em;
+  font-weight:800;
+  letter-spacing: -0.5px;
+  position:relative;
+  background: linear-gradient(135deg, #fff 30%, #ccc);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero .subtitle {
+  color: var(--deprag-red);
+  font-size:1.1em;
+  margin-top:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-weight:600;
+}
+.hero .meta {
+  color: var(--muted);
+  margin-top:20px;
+  font-size:0.95em;
+}
+.badge {
+  display:inline-block;
+  background: var(--deprag-red);
+  color:#fff;
+  padding: 4px 14px;
+  border-radius:4px;
+  font-size:0.8em;
+  font-weight:700;
+  letter-spacing:1px;
+  margin:0 4px;
+}
+.container { max-width:1100px; margin:0 auto; padding:0 30px; }
+.section { margin:60px 0; }
+.section h2 {
+  font-size:2em;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:10px;
+  padding-bottom:12px;
+  border-bottom:2px solid var(--deprag-red);
+  display:inline-block;
+}
+.section h3 {
+  font-size:1.4em;
+  font-weight:700;
+  color: var(--gold);
+  margin:35px 0 15px;
+}
+.section h4 {
+  font-size:1.15em;
+  font-weight:700;
+  color: #ccc;
+  margin:25px 0 10px;
+}
+p { margin:12px 0; color: #c0c0c0; }
+strong { color:#fff; }
+.card {
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:28px 32px;
+  margin:24px 0;
+}
+.card-header {
+  font-size:1.3em;
+  font-weight:700;
+  color:var(--gold);
+  margin-bottom:16px;
+}
+table {
+  width:100%; border-collapse:collapse;
+  margin:16px 0;
+  font-size:0.92em;
+}
+th {
+  background: var(--deprag-blue);
+  color: var(--gold);
+  padding:12px 14px;
+  text-align:left;
+  font-weight:700;
+  font-size:0.85em;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+td {
+  padding:11px 14px;
+  border-bottom:1px solid var(--border);
+  color:#c0c0c0;
+  vertical-align:top;
+}
+tr:hover td { background:rgba(200,16,46,0.05); }
+.stars { color:var(--gold); letter-spacing:2px; }
+.tag {
+  display:inline-block;
+  padding:3px 10px;
+  border-radius:3px;
+  font-size:0.8em;
+  font-weight:700;
+}
+.tag-red { background:rgba(200,16,46,0.2); color:var(--deprag-red); }
+.tag-green { background:rgba(46,204,113,0.15); color:var(--green); }
+.tag-gold { background:rgba(240,192,64,0.15); color:var(--gold); }
+.tag-blue { background:rgba(52,152,219,0.15); color:#3498db; }
+
+.metrics-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap:20px;
+  margin:24px 0;
+}
+.metric {
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:24px;
+  text-align:center;
+}
+.metric-value {
+  font-size:2.2em;
+  font-weight:800;
+  color: var(--deprag-red);
+  line-height:1.2;
+}
+.metric-label {
+  color:var(--muted);
+  font-size:0.85em;
+  margin-top:6px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.exec-summary {
+  background: linear-gradient(135deg, var(--deprag-blue), #0d1b2a);
+  border:1px solid rgba(200,16,46,0.3);
+  border-radius:10px;
+  padding:36px;
+  margin:40px 0;
+}
+.exec-summary h3 { color:var(--gold); margin-top:0; }
+.exec-summary .big-num {
+  font-size:3em; font-weight:900; color:var(--deprag-red); line-height:1;
+}
+
+.roadmap-timeline {
+  position:relative;
+  padding:20px 0;
+}
+.roadmap-phase {
+  background:var(--card);
+  border-left:4px solid var(--deprag-red);
+  padding:20px 24px;
+  margin:16px 0;
+  border-radius:0 8px 8px 0;
+}
+.roadmap-phase h4 { color:var(--gold); margin-top:0; }
+
+.risk-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  gap:16px;
+}
+.risk-item {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:16px;
+  border-top:3px solid var(--deprag-red);
+}
+.risk-item .severity { color:var(--deprag-red); font-weight:700; }
+.risk-item .mitigation { color:var(--green); margin-top:8px; }
+
+pre.chart {
+  background:#0a0a14;
+  color:var(--gold);
+  padding:18px;
+  border-radius:6px;
+  font-family:'Courier New',monospace;
+  font-size:0.85em;
+  line-height:1.4;
+  overflow-x:auto;
+  margin:16px 0;
+}
+
+.diagram {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:24px;
+  font-family:'Courier New',monospace;
+  font-size:0.82em;
+  line-height:1.5;
+  white-space:pre;
+  overflow-x:auto;
+  color:#a0a0c0;
+  margin:16px 0;
+}
+
+footer {
+  text-align:center;
+  padding:40px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:0.85em;
+  margin-top:40px;
+}
+
+blockquote {
+  border-left:3px solid var(--deprag-red);
+  padding:10px 20px;
+  margin:20px 0;
+  background:rgba(200,16,46,0.05);
+  color: #aaa;
+  border-radius:0 6px 6px 0;
+}
+
+@media (max-width:768px) {
+  .hero { padding:50px 20px; }
+  .hero h1 { font-size:1.8em; }
+  .container { padding:0 16px; }
+  .section h2 { font-size:1.5em; }
+  .metrics-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div style="position:relative;z-index:1;">
+    <div class="subtitle">DEPRAG — German Precision Air Tools</div>
+    <h1>Korea Market Entry Report</h1>
+    <div style="margin-top:24px;">
+      <span class="badge">v1.0</span>
+      <span class="badge" style="background:#16213e;">FINAL</span>
+      <span class="badge" style="background:#0a4a2a;">EXECUTIVE DECISION READY</span>
+    </div>
+    <p class="meta">Prepared: July 28, 2026 &nbsp;|&nbsp; For: Fatec System Marketing Team / DEPRAG Leadership<br>
+    Document Class: Strategic Market Report — 8 Sections, 44KB, 773 Lines</p>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="section">
+<h2>Executive Summary</h2>
+
+<div class="metrics-grid">
+  <div class="metric">
+    <div class="metric-value">₩1.2–1.5T</div>
+    <div class="metric-label">Total Korea Air-Tool Market</div>
+  </div>
+  <div class="metric">
+    <div class="metric-value">₩200–300B</div>
+    <div class="metric-label">DEPRAG Addressable Segment</div>
+  </div>
+  <div class="metric">
+    <div class="metric-value">5–7%</div>
+    <div class="metric-label">Annual Growth (Smart Segment)</div>
+  </div>
+  <div class="metric">
+    <div class="metric-value">&lt;5%</div>
+    <div class="metric-label">DEPRAG Current Market Share</div>
+  </div>
+</div>
+
+<div class="exec-summary">
+<h3>Strategic Assessment</h3>
+<p>The Korean pneumatic tools market is dominated by low-cost Japanese imports, but the <strong>automation + precision segments</strong> are growing 5–7% annually. DEPRAG's three unique pillars — <strong>EC-Servo</strong> (data-driven fastening), <strong>ATEX</strong> (explosion-proof certification), and <strong>extreme durability</strong> — directly address unmet needs in EV manufacturing, LNG shipbuilding, and aerospace/defense.</p>
+
+<p><strong>Target:</strong> Year 1 ₩1–2B contracts → Year 3 ₩15–20B cumulative. Multi-tier channel strategy: Direct (Fatec System) + Distributed (2–3 partners) + SI Integration (3–5 partners).</p>
+
+<div style="margin-top:20px;">
+<span class="tag tag-red">#1 Automotive/EV</span>
+<span class="tag tag-gold">#2 Shipbuilding</span>
+<span class="tag tag-blue">#3 Aerospace/Defense</span>
+<span class="tag tag-green">#4 Heavy Industry</span>
+<span class="tag tag-green">#5 Precision Machinery</span>
+</div>
+</div>
+
+<h3>Key Metrics at a Glance</h3>
+<table>
+<tr><th>Metric</th><th>Value</th></tr>
+<tr><td>Target Market Size</td><td>₩200–300 billion (addressable high-value segment)</td></tr>
+<tr><td>Year 1 Contract Target</td><td>₩1–2 billion</td></tr>
+<tr><td>Year 3 Cumulative Revenue</td><td>₩15–20 billion</td></tr>
+<tr><td>Entry Channels</td><td>Direct (Fatec) + Distributed (2–3) + SI (3–5)</td></tr>
+<tr><td>Time to First Deal</td><td>6–9 months (automotive/EV priority)</td></tr>
+</table>
+
+</div><!-- /exec summary -->
+
+<!-- SECTION 1: PRODUCT PORTFOLIO -->
+<div class="section">
+<h2>1. DEPRAG Product Portfolio & Korea Market Fit</h2>
+
+<h3>1.1 Seven Core Functional Groups</h3>
+<table>
+<tr><th>Function</th><th>Key Categories</th><th>Korea Priority</th></tr>
+<tr><td><strong>Grinding/Finishing</strong></td><td>Air grinders (25–250W), sanders, needle scalers</td><td><span class="stars">⭐⭐⭐⭐⭐</span> Shipbuilding, Heavy</td></tr>
+<tr><td><strong>Drilling/Tapping</strong></td><td>Precision air drills, tapers</td><td><span class="stars">⭐⭐⭐⭐</span> Aviation/Precision</td></tr>
+<tr><td><strong>Fastening</strong></td><td>Impact wrenches, nut runners, <span class="tag tag-red">EC-Servo</span></td><td><span class="stars">⭐⭐⭐⭐⭐</span> EV Automotive</td></tr>
+<tr><td><strong>Cutting/Shearing</strong></td><td>Air saws, shears</td><td><span class="stars">⭐⭐⭐</span> Maintenance</td></tr>
+<tr><td><strong>Chiseling/Hammering</strong></td><td>Air hammers, chisels, riveting tools</td><td><span class="stars">⭐⭐⭐⭐</span> Shipbuilding</td></tr>
+<tr><td><strong>Clamping/Assembly</strong></td><td>Pneumatic pliers (electronic control)</td><td><span class="stars">⭐⭐⭐</span> Precision OEM</td></tr>
+<tr><td><strong>ATEX Explosion-Proof</strong></td><td>Full product line (all categories)</td><td><span class="stars">⭐⭐⭐⭐⭐</span> Defense, LNG</td></tr>
+</table>
+
+<h3>1.2 DEPRAG vs. Competitors</h3>
+<table>
+<tr><th>Dimension</th><th>DEPRAG</th><th>Atlas Copco</th><th>Japanese OEMs</th><th>Chinese Import</th></tr>
+<tr><td><strong>ATEX Certification</strong></td><td><span class="tag tag-red">Extensive (Unique)</span></td><td>Standard</td><td>Limited/None</td><td>None</td></tr>
+<tr><td><strong>EC-Servo (Data)</strong></td><td><span class="tag tag-red">Core Feature</span></td><td>Retrofit Only</td><td>None</td><td>None</td></tr>
+<tr><td><strong>Durability (MTBF)</strong></td><td><span class="tag tag-green">3000+ hrs</span></td><td>2500+ hrs</td><td>1800–2000</td><td>&lt;1000</td></tr>
+<tr><td><strong>Korea Market Share</strong></td><td>&lt;5% (target)</td><td>20–30%</td><td>30–40%</td><td>5–10%</td></tr>
+</table>
+
+</div><!-- /section 1 -->
+
+<!-- SECTION 2: GLOBAL INDUSTRY VERTICALS -->
+<div class="section">
+<h2>2. Five Priority Verticals — Global Trends → Korea Application</h2>
+
+<div class="card">
+<div class="card-header"><span class="tag tag-red">#1 PRIORITY</span> Automotive & EV — ⭐⭐⭐⭐⭐</div>
+<p><strong>Global:</strong> EV production +15–20% annually. Battery pack assembly requires ±0.1Nm precision.</p>
+<p><strong>Korea:</strong> Hyundai/Kia ramping 30+ new EV plants by 2028. <strong>EC-Servo solution directly addresses precision + traceability.</strong></p>
+<p><strong>Entry Window:</strong> 6–9 months | <strong>Win Rate:</strong> 40–50% (EC-Servo positioning)</p>
+</div>
+
+<div class="card">
+<div class="card-header"><span class="tag tag-gold">#2 PRIORITY</span> Shipbuilding & Marine — ⭐⭐⭐⭐⭐</div>
+<p><strong>Global:</strong> LNG carrier demand +40%. Block assembly, rust removal labor-intensive.</p>
+<p><strong>Korea:</strong> 30% global shipbuilding share. ATEX needle scalers + grinders command premium in confined spaces.</p>
+<p><strong>Entry Window:</strong> 9–12 months | <strong>Win Rate:</strong> 70–80% (ATEX-critical)</p>
+</div>
+
+<div class="card">
+<div class="card-header"><span class="tag tag-blue">#3 PRIORITY</span> Aerospace & Defense — ⭐⭐⭐⭐</div>
+<p><strong>Global:</strong> Precision drilling (carbon fiber), ATEX mandatory for military-spec.</p>
+<p><strong>Korea:</strong> KAI, Samsung Techwin expanding MRO hubs. Defense procurement = multi-year framework contracts.</p>
+<p><strong>Entry Window:</strong> 12–18 months | <strong>Win Rate:</strong> 70–80% (ATEX monopoly)</p>
+</div>
+
+<div class="card">
+<div class="card-header"><span class="tag tag-green">#4 PRIORITY</span> Heavy Industry & Steel — ⭐⭐⭐⭐</div>
+<p><strong>Korea:</strong> POSCO, Hyundai Steel high-volume. 24/7 production — tool durability is cost factor.</p>
+<p><strong>Entry Window:</strong> 9–12 months | <strong>Target:</strong> Direct + Tier-1 supplier partnerships</p>
+</div>
+
+<div class="card">
+<div class="card-header"><span class="tag tag-green">#5 PRIORITY</span> Precision Machinery & SME OEMs — ⭐⭐⭐</div>
+<p><strong>Korea:</strong> 10k+ SME manufacturers. Distributor channel (Korean True-Tech, ToolMart) fastest entry.</p>
+<p><strong>Entry Window:</strong> 6 months+ | <strong>Target:</strong> Ongoing baseline revenue</p>
+</div>
+
+</div><!-- /section 2 -->
+
+<!-- SECTION 3: MARKET STRUCTURE -->
+<div class="section">
+<h2>3. Korea Manufacturing Market Structure</h2>
+
+<h3>3.1 Three-Tier Segmentation</h3>
+<table>
+<tr><th>Tier</th><th>Companies</th><th>Procurement Model</th><th>DEPRAG Strategy</th></tr>
+<tr><td><strong>Tier 1: Chaebol OEM</strong></td><td>Hyundai, Samsung, POSCO (200+)</td><td>RFQ + Technical Evaluation</td><td>Direct Fatec + Technical Sales</td></tr>
+<tr><td><strong>Tier 2: Mid-market Supplier</strong></td><td>Hyundai E&C, Hanwha (2,000+)</td><td>SI-led + Competitive Bid</td><td>SI Partnership + Referral</td></tr>
+<tr><td><strong>Tier 3: SME Manufacturers</strong></td><td>Tool & die, precision (10k+)</td><td>Distributor-based</td><td>Distributor Network + Support</td></tr>
+</table>
+
+<h3>3.2 Market Size Breakdown</h3>
+<table>
+<tr><th>Segment</th><th>Market Size</th><th>CAGR</th><th>DEPRAG Position</th></tr>
+<tr><td>Hand-held Premium</td><td>₩80–120B</td><td>3–4%</td><td>Emerging (target 5–8%)</td></tr>
+<tr><td>EC-Servo / Data-Driven</td><td>₩30–50B</td><td><strong>12–15%</strong></td><td><span class="tag tag-red">First-Mover Advantage</span></td></tr>
+<tr><td>ATEX / Explosion-Proof</td><td>₩20–30B</td><td>6–8%</td><td><span class="tag tag-red">DEPRAG Monopoly</span></td></tr>
+<tr><td>SI-Bundled Solutions</td><td>₩50–80B</td><td>10–12%</td><td>Growing via SI partners</td></tr>
+</table>
+
+</div><!-- /section 3 -->
+
+<!-- SECTION 4: COMPETITIVE POSITIONING -->
+<div class="section">
+<h2>4. Competitive & Market Positioning Strategy</h2>
+
+<pre class="chart">
+                        High Tech
+                          ↑
+                   EC-Servo (DEPRAG)
+                      ⭐⭐⭐⭐⭐
+            
+       Atlas Copco      Desoutter     Ingersoll Rand
+       (Premium std)    (Aviation)    (Industrial)
+          ⭐⭐⭐⭐           ⭐⭐⭐           ⭐⭐⭐
+                    
+        Japanese OEMs              계양전기
+         (URYU, Shinano)         (Local budget)
+           ⭐⭐⭐                       ⭐⭐
+           
+    Chinese Imports ⭐⭐
+    (MarketPlace)
+             ←─────────────────→
+            Low Price      High Price
+</pre>
+
+<h3>DEPRAG Competitive Advantages</h3>
+<table>
+<tr><th>Competitor</th><th>Strength</th><th>vs. DEPRAG</th></tr>
+<tr><td><strong>Atlas Copco</strong></td><td>Ecosystem, service, breadth</td><td>DEPRAG wins ATEX + EC-Servo; loses on service HQ</td></tr>
+<tr><td><strong>Desoutter</strong></td><td>Aviation specialization</td><td>DEPRAG wins breadth + ATEX; loses on aviation brand</td></tr>
+<tr><td><strong>Ingersoll Rand</strong></td><td>Broad industrial range</td><td>DEPRAG wins ATEX + EC-Servo + German precision</td></tr>
+<tr><td><strong>Japanese OEMs</strong></td><td>Cost, reliability, familiarity</td><td>DEPRAG wins features; loses on price</td></tr>
+<tr><td><strong>Chinese Imports</strong></td><td>Rock-bottom price</td><td>DEPRAG wins on everything; anti-cheap alternative</td></tr>
+</table>
+
+<blockquote>
+<strong>Strategic Motto:</strong> "Extreme Precision Meets Durability"<br>
+<strong>Rule:</strong> Do NOT compete on price — compete on unmet needs (ATEX, EC-Servo, harsh-environment credibility)
+</blockquote>
+
+</div><!-- /section 4 -->
+
+<!-- SECTION 5: CHANNEL STRATEGY -->
+<div class="section">
+<h2>5. Channel & Partnership Strategy</h2>
+
+<div class="diagram">
+┌─────────────────────────────────────────────────────┐
+│                  DEPRAG (Headquarters)              │
+│          (Product, strategy, compliance)            │
+└───────┬──────────────────┬─────────────┬───────────┘
+        │                  │             │
+        ↓                  ↓             ↓
+   ┌──────────┐   ┌──────────────┐  ┌─────────────┐
+   │ FATEC    │   │ DISTRIBUTORS │  │ SI PARTNERS │
+   │ SYSTEM   │   │ (Multi-tier) │  │ (Automation)│
+   │ (Direct) │   │              │  │             │
+   └────┬─────┘   └──────┬───────┘  └──────┬──────┘
+        │                │                │
+        ↓                ↓                ↓
+   ┌──────────┐   ┌──────────────┐  ┌──────────────┐
+   │ TIER 1   │   │ TIER 2/3 OEM │  │ AUTOMATION   │
+   │ OEM/     │   │ & SME        │  │ INTEGRATORS  │
+   │ CHAEBOL  │   │              │  │ (DGS/cobot)  │
+   └──────────┘   └──────────────┘  └──────────────┘
+</div>
+
+<h3>Channel 1: Direct (Fatec System)</h3>
+<p><strong>Role:</strong> Strategic lead for Tier 1 OEM. Target: Hyundai, Kia, POSCO, large shipyards, defense procurement.</p>
+<p><strong>Y1 Target:</strong> ₩400–800M contracts, 1+ automotive/EV deal, 2+ shipbuilder proposals.</p>
+
+<h3>Channel 2: Distributed Partners</h3>
+<table>
+<tr><th>Partner</th><th>Territory</th><th>Focus</th></tr>
+<tr><td><strong>Korean True-Tech</strong></td><td>Seoul region + supply chain</td><td>Industrial tools, pneumatics legacy</td></tr>
+<tr><td><strong>ToolMart</strong></td><td>Multi-regional (Busan port)</td><td>International tool distribution, logistics</td></tr>
+<tr><td><strong>3rd Partner (TBD)</strong></td><td>Niche (aerospace/defense)</td><td>Special tools, high-touch</td></tr>
+</table>
+
+<h3>Channel 3: SI Automation Partners</h3>
+<table>
+<tr><th>Partner</th><th>Specialty</th><th>First Project</th></tr>
+<tr><td><strong>Doosan Robotics</strong></td><td>Collaborative robots + air tools</td><td>EV battery assembly</td></tr>
+<tr><td><strong>Rockwell Automation</strong></td><td>Global systems integrator</td><td>Tier 2 supplier automation</td></tr>
+<tr><td><strong>SmartFactory SI Firms</strong></td><td>Digital manufacturing, DGS</td><td>Shipbuilder block-assembly</td></tr>
+</table>
+
+</div><!-- /section 5 -->
+
+<!-- SECTION 6: 3-YEAR ROADMAP -->
+<div class="section">
+<h2>6. Market Entry Roadmap — 3-Year Phased Approach</h2>
+
+<div class="roadmap-timeline">
+<div class="roadmap-phase">
+<h4>Year 1 (2026–2027): Foundation & Proof-of-Concept</h4>
+<p><strong>Goal:</strong> ₩1–2B contracts. Establish credibility in 2–3 verticals.</p>
+<p>EC-Servo whitepaper → Hyundai/Kia intro → Distributor recruitment → Pilot trials → SIMTOS/AUTOMAN trade shows → Case studies</p>
+</div>
+
+<div class="roadmap-phase">
+<h4>Year 2 (2027–2028): Expansion & Solution Integration</h4>
+<p><strong>Goal:</strong> ₩5–8B cumulative. 3–4 verticals. Launch SI bundled solutions.</p>
+<p>Aerospace/Defense entry → SI-integrated "SmartAssembly Suite" → Korea tech support hires → Catalog Korean localization → 5–8 secondary distributors</p>
+</div>
+
+<div class="roadmap-phase">
+<h4>Year 3 (2028–2029): Localization & Service Establishment</h4>
+<p><strong>Goal:</strong> ₩15–20B cumulative. Korea technical center.</p>
+<p>Service center launch (Fatec) → Full Korean-language collateral → OEM framework contracts (Hyundai, Kia, shipyards) → IoT/Industry 4.0 roadmap</p>
+</div>
+</div>
+
+<h3>Revenue Projection</h3>
+<table>
+<tr><th>Year</th><th>Total TAM</th><th>Strategic Segment</th><th>DEPRAG Target</th></tr>
+<tr><td><strong>2026</strong></td><td>₩1,200–1,500B</td><td>₩200–300B</td><td>₩5–10B (0.3–0.7%)</td></tr>
+<tr><td><strong>2027</strong></td><td>₩1,280–1,600B</td><td>₩215–325B</td><td>₩100–500B (3–5%)</td></tr>
+<tr><td><strong>2028</strong></td><td>₩1,360–1,700B</td><td>₩230–350B</td><td>₩500–1,000B (5–8%)</td></tr>
+<tr><td><strong>2029</strong></td><td>₩1,450–1,800B</td><td>₩250–375B</td><td>₩1,500–2,000B (12–15%)</td></tr>
+</table>
+
+</div><!-- /section 6 -->
+
+<!-- SECTION 7: KPI DASHBOARD -->
+<div class="section">
+<h2>7. Key Performance Indicators — Year 1</h2>
+
+<div class="metrics-grid">
+  <div class="metric">
+    <div class="metric-value">₩1–2B</div>
+    <div class="metric-label">Total Contract Value</div>
+  </div>
+  <div class="metric">
+    <div class="metric-value">1+</div>
+    <div class="metric-label">Tier 1 OEM Contracts</div>
+  </div>
+  <div class="metric">
+    <div class="metric-value">2–3</div>
+    <div class="metric-label">Case Studies Published</div>
+  </div>
+  <div class="metric">
+    <div class="metric-value">2–3</div>
+    <div class="metric-label">Distributor Partners</div>
+  </div>
+  <div class="metric">
+    <div class="metric-value">2–3</div>
+    <div class="metric-label">SI Integrator Partners</div>
+  </div>
+  <div class="metric">
+    <div class="metric-value">&lt;48h</div>
+    <div class="metric-label">Support Response Time</div>
+  </div>
+</div>
+
+</div><!-- /section 7 -->
+
+<!-- SECTION 8: RISK REGISTER -->
+<div class="section">
+<h2>8. Risk Register & Mitigation</h2>
+
+<div class="risk-grid">
+<div class="risk-item">
+<p class="severity">🔴 HIGH — Atlas Copco Price Aggression</p>
+<p>₩500M revenue loss potential</p>
+<p class="mitigation">→ Focus on ATEX + EC-Servo (non-price value); avoid direct contests</p>
+</div>
+<div class="risk-item">
+<p class="severity">🔴 HIGH — Japanese OEM Low-Cost</p>
+<p>₩300–500M channel erosion</p>
+<p class="mitigation">→ Distributor margin protection; brand education</p>
+</div>
+<div class="risk-item">
+<p class="severity">🟡 MEDIUM — Fatec Capacity Bottleneck</p>
+<p>6–12 month delay in OEM sales</p>
+<p class="mitigation">→ Plan technical hiring (1–2 engineers by Q2 2027)</p>
+</div>
+<div class="risk-item">
+<p class="severity">🔴 HIGH — Limited Brand Awareness</p>
+<p>Low Y1 lead generation</p>
+<p class="mitigation">→ Heavy content marketing + trade show presence</p>
+</div>
+<div class="risk-item">
+<p class="severity">🟡 MEDIUM — Single-Channel Dependency</p>
+<p>Revenue concentration risk on Fatec</p>
+<p class="mitigation">→ Accelerate distributor + SI partner growth (40% Y1 revenue outside Fatec)</p>
+</div>
+<div class="risk-item">
+<p class="severity">🟡 MEDIUM — ATEX Regulatory Changes</p>
+<p>Certification re-work; aerospace delay</p>
+<p class="mitigation">→ Track EU/Korean regulatory updates; compliance consultants</p>
+</div>
+</div>
+
+</div><!-- /section 8 -->
+
+<!-- CONCLUSION -->
+<div class="section">
+<h2>Conclusion & Recommendation</h2>
+
+<div class="card">
+<div class="card-header">DEPRAG Has a 6–18 Month Strategic Window</div>
+<p>As EV/smart factory investment peaks and LNG shipbuilding ramps, DEPRAG's combination of <strong>Fatec System's local leverage</strong>, <strong>unmatched ATEX + EC-Servo feature parity</strong>, and <strong>proven extreme-environment durability</strong> creates a defensible entry position for a premium, value-driven B2B play.</p>
+
+<p><strong>Year 1 Gateway:</strong></p>
+<ul style="color:#c0c0c0; margin:12px 0; padding-left:20px;">
+<li><span class="tag tag-green">GREEN LIGHT</span> ₩1–2B contracts + 5+ partnerships + 2–3 case studies → <strong>Proceed to Year 2</strong></li>
+<li><span class="tag tag-gold">AMBER</span> ₩500M–1B contracts → Re-evaluate vertical prioritization</li>
+<li><span class="tag tag-red">RED</span> &lt;₩500M → Consider market exit or strategy restart</li>
+</ul>
+</div>
+
+<div class="card" style="border-color:var(--deprag-red);">
+<div class="card-header">Immediate Next Steps (90 Days)</div>
+<ol style="color:#c0c0c0; padding-left:20px; line-height:2;">
+<li><strong>Secure OEM intro meetings</strong> — Hyundai, Kia via Fatec System (Aug 2026)</li>
+<li><strong>Finalize distributor partnerships</strong> — Korean True-Tech, ToolMart MOUs (Sep 2026)</li>
+<li><strong>Launch EC-Servo Korean whitepaper</strong> — Thought leadership positioning (Aug–Sep 2026)</li>
+<li><strong>SI partner kickoff</strong> — Doosan Robotics, Rockwell Automation (Sep 2026)</li>
+<li><strong>Trade show presence</strong> — SIMTOS, AUTOMAN (Sep 2026)</li>
+</ol>
+</div>
+
+</div><!-- /conclusion -->
+
+<!-- APPENDIX -->
+<div class="section">
+<h2>Appendix: Source Documents</h2>
+
+<table>
+<tr><th>Reference</th><th>Source Task</th><th>File</th></tr>
+<tr><td>Korea Distributor & SI Landscape</td><td>T1</td><td><code>korea-distributor-si-landscape.md</code></td></tr>
+<tr><td>DEPRAG Product Catalog (100+ models)</td><td>T2</td><td><code>air-tools-product-catalog.md</code></td></tr>
+<tr><td>Korea Air-Tool Market Analysis</td><td>T3</td><td><code>korea-air-tool-market-analysis.md</code></td></tr>
+<tr><td>Industry-Specific Applications</td><td>T4</td><td><code>air-tools-industry-applications.md</code></td></tr>
+<tr><td>Marketing Strategy Foundation</td><td>T5</td><td><code>air-tools-korea-strategy.md</code></td></tr>
+</table>
+
+<p style="margin-top:20px; color:var(--muted);">Full 12-vertical industry coverage table available in product catalog (T2). Verticals 6–12 (Construction, Oil/Gas, Foundry, Machine Building, Workshops, Tank/Vessel, Body Construction) deprioritized in Year 1 to focus on Top 5 highest-ROI verticals.</p>
+
+</div>
+
+</div><!-- /container -->
+
+<footer>
+DEPRAG Air Tools: Korea Market Entry Report v1.0 &nbsp;|&nbsp; July 28, 2026 &nbsp;|&nbsp; Fatec System Marketing Team<br>
+Generated via Hermes Kanban (T1–T8) &nbsp;|&nbsp; Board: deprag-korea-ai-market<br>
+Source files: <code>/root/company-wiki/deprag/</code>
+</footer>
+
+</body>
+</html>
