@@ -104,16 +104,22 @@
           var rect = glanceSection.getBoundingClientRect();
           var vh = window.innerHeight;
 
-          // How far the section top has scrolled past viewport bottom (negative=nope)
+          // How far the section top has scrolled past viewport bottom
           var scrolled = vh - rect.top;
-          // Progress: 0 when section enters viewport, 1 when fully scrolled past
-          var progress = Math.max(0, Math.min(1, scrolled / (rect.height + vh)));
+          // Progress: 0 → 2 (accelerated for bigger range)
+          var progress = Math.max(0, Math.min(2, scrolled / (rect.height * 0.4 + vh * 0.5)));
 
+          // Scale from 0.85 → 1.8 (dramatic zoom)
           var img = glanceBg.querySelector('img');
-          if (img) img.style.transform = 'scale(' + (1.0 + progress * 0.25) + ')';
+          if (img) {
+            var scale = 0.85 + progress * 0.95;
+            img.style.transform = 'scale(' + scale + ')';
+            img.style.transition = 'transform 0.15s ease-out';
+          }
 
+          // Overlay fades from 0 → 1
           var overlay = glanceSection.querySelector('.glance-overlay');
-          if (overlay) overlay.style.opacity = 0.4 + progress * 0.6;
+          if (overlay) overlay.style.opacity = progress;
 
           ticking = false;
         });
