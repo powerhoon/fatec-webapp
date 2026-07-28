@@ -93,48 +93,43 @@
 
   // ══════════ At a Glance ══════════
   var glanceSection = document.getElementById('glanceSection');
-  var glanceGrid = document.getElementById('glanceGrid');
-
   if (glanceSection) {
-    var obs = new IntersectionObserver(function(entries) {
-      var e = entries[0];
-      if (e.isIntersecting && e.intersectionRatio > 0.4) {
-        glanceSection.classList.add('active');
-        glanceSection.classList.add('zoomed');
-      }
-    }, { threshold: [0, 0.4] });
-    obs.observe(glanceSection);
-  }
-
-  // Count-up
-  if (glanceGrid) {
     var counted = false;
     function countUp(el) {
       var target = parseInt(el.getAttribute('data-target'), 10);
-      var duration = 2000;
-      var start = performance.now();
+      var dur = 1800, start = performance.now();
       function tick(now) {
-        var elapsed = now - start;
-        var progress = Math.min(elapsed / duration, 1);
-        // Ease-out curve
-        var eased = 1 - Math.pow(1 - progress, 3);
-        var current = Math.floor(eased * target);
-        el.textContent = current.toLocaleString();
-        if (progress < 1) requestAnimationFrame(tick);
+        var p = Math.min(1, (now - start) / dur);
+        el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * target).toLocaleString();
+        if (p < 1) requestAnimationFrame(tick);
         else el.textContent = target.toLocaleString();
       }
       requestAnimationFrame(tick);
     }
-    var observer = new IntersectionObserver(function(entries) {
+    var obs = new IntersectionObserver(function(entries) {
       if (entries[0].isIntersecting && !counted) {
         counted = true;
-        glanceGrid.querySelectorAll('.glance-num').forEach(function(el) {
-          setTimeout(function() { countUp(el); }, 200);
+        glanceSection.querySelectorAll('.glance-num').forEach(function(el) {
+          setTimeout(function() { countUp(el); }, 150);
         });
       }
     }, { threshold: 0.3 });
-    observer.observe(glanceGrid);
+    obs.observe(glanceSection);
   }
+
+  // 3D Tilt on cards
+  document.querySelectorAll('.glance-card').forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var rect = card.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width - 0.5;
+      var y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = 
+        'translateY(-6px) scale(1.03) rotateX(' + (-y * 8) + 'deg) rotateY(' + (x * 12) + 'deg)';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = '';
+    });
+  });
 
   function esc(t) {
     if (!t) return '';
