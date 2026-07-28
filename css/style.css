@@ -323,7 +323,7 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); letter-spacing: -0.5px; }
 
 /* ── Story Card ── */
 .story-card {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px;
   align-items: center;
 }
 .story-eyebrow {
