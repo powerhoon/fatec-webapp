@@ -91,6 +91,37 @@
       .catch(function() { blogContainer && blogContainer.remove(); });
   }
 
+  // ══════════ ASML-style Count-Up Animation ══════════
+  var glanceGrid = document.getElementById('glanceGrid');
+  if (glanceGrid) {
+    var counted = false;
+    function countUp(el) {
+      var target = parseInt(el.getAttribute('data-target'), 10);
+      var duration = 2000;
+      var start = performance.now();
+      function tick(now) {
+        var elapsed = now - start;
+        var progress = Math.min(elapsed / duration, 1);
+        // Ease-out curve
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.floor(eased * target);
+        el.textContent = current.toLocaleString();
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toLocaleString();
+      }
+      requestAnimationFrame(tick);
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting && !counted) {
+        counted = true;
+        glanceGrid.querySelectorAll('.glance-number').forEach(function(el) {
+          setTimeout(function() { countUp(el); }, 200);
+        });
+      }
+    }, { threshold: 0.3 });
+    observer.observe(glanceGrid);
+  }
+
   function esc(t) {
     if (!t) return '';
     var d = document.createElement('div');
