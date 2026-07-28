@@ -91,34 +91,40 @@
       .catch(function() { blogContainer && blogContainer.remove(); });
   }
 
-  // ══════════ ASML-style Count-Up Animation ══════════
-  var glanceGrid = document.getElementById('glanceGrid');
-  var glanceBg = document.getElementById('glanceBg');
+  // ══════════ ASML Parallax Zoom ══════════
   var glanceSection = document.getElementById('glanceSection');
+  var glanceBg = document.getElementById('glanceBg');
+  var glanceGrid = document.getElementById('glanceGrid');
 
   if (glanceSection && glanceBg) {
+    var ticking = false;
     function updateZoom() {
-      var rect = glanceSection.getBoundingClientRect();
-      var sectionTop = rect.top;
-      var sectionHeight = rect.height;
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          var rect = glanceSection.getBoundingClientRect();
+          var vh = window.innerHeight;
 
-      // Progress: 0 (just entering) → 1 (fully scrolled through)
-      var visibleTop = Math.max(0, 0 - sectionTop);
-      var progress = Math.min(1, (visibleTop + window.innerHeight * 0.3) / sectionHeight);
+          // How far the section top has scrolled past viewport bottom (negative=nope)
+          var scrolled = vh - rect.top;
+          // Progress: 0 when section enters viewport, 1 when fully scrolled past
+          var progress = Math.max(0, Math.min(1, scrolled / (rect.height + vh)));
 
-      // Scale from 1.0 → 1.25 as user scrolls (small → big)
-      var scale = 1.0 + (progress * 0.25);
-      var img = glanceBg.querySelector('img');
-      if (img) img.style.transform = 'scale(' + scale + ')';
+          var img = glanceBg.querySelector('img');
+          if (img) img.style.transform = 'scale(' + (1.0 + progress * 0.25) + ')';
 
-      // Overlay fades in
-      var overlay = glanceSection.querySelector('.glance-overlay');
-      if (overlay) overlay.style.opacity = 0.5 + (progress * 0.5);
+          var overlay = glanceSection.querySelector('.glance-overlay');
+          if (overlay) overlay.style.opacity = 0.4 + progress * 0.6;
+
+          ticking = false;
+        });
+        ticking = true;
+      }
     }
     window.addEventListener('scroll', updateZoom, { passive: true });
     updateZoom();
   }
 
+  // Count-up
   if (glanceGrid) {
     var counted = false;
     function countUp(el) {
