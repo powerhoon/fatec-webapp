@@ -106,20 +106,76 @@
     });
   }
 
-  // ══════════ Story Image Rotation ══════════
+  // ══════════ Story Image Rotation — Mosaic Dissolve ══════════
   var slider = document.getElementById('storySlider');
   if (slider) {
     var imgs = slider.querySelectorAll('img');
+    var canvas = document.getElementById('tileCanvas');
+    var ctx = canvas.getContext('2d');
     var idx = 0;
-    setInterval(function() {
+    var busy = false;
+    var COLS = 8, ROWS = 5;
+
+    function mosaicSwitch() {
+      if (busy) return;
+      busy = true;
       var cur = imgs[idx];
       idx = (idx + 1) % imgs.length;
       var next = imgs[idx];
-      cur.classList.add('exit');
-      cur.classList.remove('active');
+
+      // Setup canvas
+      var w = slider.offsetWidth;
+      var h = 500;
+      canvas.width = w;
+      canvas.height = h;
+      ctx.drawImage(cur, 0, 0, w, h);
+      canvas.style.opacity = '1';
+
+      var tw = w / COLS, th = h / ROWS;
+      var tiles = [];
+      for (var r = 0; r < ROWS; r++)
+        for (var c = 0; c < COLS; c++)
+          tiles.push({ r: r, c: c });
+      // Shuffle for random dissolve
+      tiles.sort(function() { return Math.random() - 0.5; });
+
+      // Show the next image underneath
       next.classList.add('active');
-      setTimeout(function() { cur.classList.remove('exit'); }, 700);
-    }, 4000);
+      cur.classList.remove('active', 'exit');
+
+      // Animate tiles fading out
+      var start = performance.now();
+      function anim(ts) {
+        var elapsed = (ts - start) / 1000;
+        ctx.clearRect(0, 0, w, h);
+        ctx.drawImage(cur, 0, 0, w, h);
+        ctx.globalCompositeOperation = 'destination-out';
+
+        for (var i = 0; i < tiles.length; i++) {
+          var t = tiles[i];
+          var delay = i * 0.015;
+          if (elapsed > delay) {
+            var p = Math.min(1, (elapsed - delay) / 0.3);
+            p = 1 - Math.pow(1 - p, 2);
+            ctx.globalAlpha = p;
+            ctx.fillStyle = '#000';
+            ctx.fillRect(t.c * tw, t.r * th, tw, th);
+          }
+        }
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalAlpha = 1;
+
+        if (elapsed < tiles.length * 0.015 + 0.3) {
+          requestAnimationFrame(anim);
+        } else {
+          canvas.style.opacity = '0';
+          busy = false;
+        }
+      }
+      requestAnimationFrame(anim);
+    }
+
+    setInterval(mosaicSwitch, 4000);
   }
 
   function esc(t) {
