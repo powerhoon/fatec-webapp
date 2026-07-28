@@ -202,9 +202,10 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); letter-spacing: -0.5px; }
   z-index: 1;
 }
 .hero-content { position: relative; z-index: 2; max-width: 800px; }
-.hero-content h1 { color: var(--heading); margin-bottom: 20px; }
+.hero-content h1 { color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.6); margin-bottom: 20px; }
 .hero-content p {
-  font-size: 1rem; line-height: 1.65; color: var(--text);
+  font-size: 1rem; line-height: 1.65; color: rgba(255,255,255,0.9);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
   max-width: 560px; margin-bottom: 40px;
 }
 
