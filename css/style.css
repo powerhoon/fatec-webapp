@@ -536,7 +536,7 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); letter-spacing: -0.5px; }
 /* ── Glance Section (ASML parallax zoom reveal) ── */
 .glance-section {
   position: relative; overflow: hidden;
-  min-height: 80vh; padding: 0 !important;
+  min-height: 100vh; padding: 0 !important;
   background: #0a0c10;
 }
 .glance-bg {
