@@ -97,11 +97,12 @@
 
   if (glanceSection) {
     var obs = new IntersectionObserver(function(entries) {
-      if (entries[0].isIntersecting) {
+      var e = entries[0];
+      if (e.isIntersecting && e.intersectionRatio > 0.4) {
         glanceSection.classList.add('active');
         glanceSection.classList.add('zoomed');
       }
-    }, { threshold: 0.15 });
+    }, { threshold: [0, 0.4] });
     obs.observe(glanceSection);
   }
 
