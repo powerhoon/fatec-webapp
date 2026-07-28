@@ -106,6 +106,18 @@
     });
   }
 
+  // ══════════ Story Image Rotation ══════════
+  var slider = document.getElementById('storySlider');
+  if (slider) {
+    var imgs = slider.querySelectorAll('img');
+    var idx = 0;
+    setInterval(function() {
+      imgs[idx].classList.remove('active');
+      idx = (idx + 1) % imgs.length;
+      imgs[idx].classList.add('active');
+    }, 4000);
+  }
+
   function esc(t) {
     if (!t) return '';
     var d = document.createElement('div');
