@@ -261,9 +261,11 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); letter-spacing: -0.5px; }
 }
 /* Hero Quick Links Bar */
 .ql-bar {
-  margin-top: auto;
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
   padding: 20px 40px;
   border-top: 1px solid rgba(255,255,255,0.08);
+  background: rgba(10,12,16,0.6);
+  backdrop-filter: blur(8px);
   display: flex; align-items: center; gap: 32px;
 }
 .ql-bar-label {
