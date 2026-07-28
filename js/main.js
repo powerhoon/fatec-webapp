@@ -99,10 +99,10 @@
       var rect = glanceSection.getBoundingClientRect();
       var x = (e.clientX - rect.left) / rect.width - 0.5;
       var y = (e.clientY - rect.top) / rect.height - 0.5;
-      glanceImg.style.transform = 'scale(1.08) translate(' + (x * -20) + 'px, ' + (y * -15) + 'px)';
+      glanceImg.style.transform = 'scale(1.1) translate(' + (x * -60) + 'px, ' + (y * -40) + 'px)';
     });
     glanceSection.addEventListener('mouseleave', function() {
-      glanceImg.style.transform = 'scale(1.05)';
+      glanceImg.style.transform = 'scale(1.1)';
     });
   }
 
