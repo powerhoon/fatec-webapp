@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fatec System — Links</title>
+  <meta name="description" content="Fatec System — 정밀 조립과 구동 기술. DEPRAG · WITTENSTEIN alpha 한국 파트너.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06060e;
+      --surface: #0e0e1a;
+      --card-bg: rgba(20,20,40,0.6);
+      --card-border: rgba(255,255,255,0.06);
+      --card-hover-border: rgba(16,6,159,0.4);
+      --text: rgba(255,255,255,0.82);
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #3b32e0;
+      --accent-glow: rgba(59,50,224,0.3);
+      --radius: 14px;
+      --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ── Particle Canvas ── */
+    #particles{
+      position:fixed;inset:0;z-index:0;
+      pointer-events:none;
+    }
+
+    /* ── Main Container ── */
+    .container{
+      position:relative;z-index:1;
+      width:100%;max-width:520px;
+      padding:60px 24px 40px;
+      display:flex;flex-direction:column;align-items:center;
+    }
+
+    /* ── Header ── */
+    .header{
+      text-align:center;margin-bottom:48px;
+    }
+    .logo{
+      font-size:32px;font-weight:800;letter-spacing:-1.5px;
+      color:#fff;margin-bottom:8px;
+      background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.7) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .tagline{
+      font-size:14px;color:var(--text-muted);
+      letter-spacing:2px;text-transform:uppercase;
+    }
+
+    /* ── Link Card ── */
+    .links{width:100%;display:flex;flex-direction:column;gap:14px;}
+
+    .link-card{
+      position:relative;
+      display:flex;align-items:center;gap:16px;
+      padding:18px 22px;
+      background:var(--card-bg);
+      border:1px solid var(--card-border);
+      border-radius:var(--radius);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      cursor:pointer;
+      transition:all var(--transition);
+      text-decoration:none;color:var(--text);
+      transform-style:preserve-3d;
+      perspective:800px;
+    }
+    .link-card:hover{
+      border-color:var(--card-hover-border);
+      box-shadow:0 0 40px var(--accent-glow), 0 8px 32px rgba(0,0,0,0.4);
+      transform:translateY(-2px);
+    }
+    .link-card:active{transform:translateY(0) scale(0.98)}
+
+    .link-card.priority{
+      border-color:rgba(59,50,224,0.25);
+      background:linear-gradient(135deg, rgba(59,50,224,0.08), rgba(59,50,224,0.02));
+    }
+    .link-card.priority::before{
+      content:'';
+      position:absolute;top:-1px;left:-1px;right:-1px;bottom:-1px;
+      border-radius:calc(var(--radius) + 1px);
+      background:linear-gradient(135deg, var(--accent), transparent 60%);
+      opacity:0;z-index:-1;transition:opacity var(--transition);
+    }
+    .link-card.priority:hover::before{opacity:0.15}
+
+    .link-card .icon{
+      flex-shrink:0;width:44px;height:44px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(255,255,255,0.04);
+      border-radius:12px;font-size:20px;
+    }
+    .link-card .info{flex:1;min-width:0}
+    .link-card .info .title{
+      font-size:15px;font-weight:600;color:#fff;
+      margin-bottom:2px;letter-spacing:-0.3px;
+    }
+    .link-card .info .desc{
+      font-size:12px;color:var(--text-muted);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .link-card .arrow{
+      flex-shrink:0;color:var(--text-muted);
+      transition:all var(--transition);
+    }
+    .link-card:hover .arrow{color:var(--accent);transform:translateX(3px)}
+
+    /* ── Divider Section ── */
+    .section-label{
+      width:100%;text-align:center;
+      font-size:11px;font-weight:500;letter-spacing:3px;
+      color:var(--text-muted);text-transform:uppercase;
+      margin:28px 0 14px;position:relative;
+    }
+    .section-label::before,.section-label::after{
+      content:'';position:absolute;top:50%;
+      width:40px;height:1px;background:rgba(255,255,255,0.08);
+    }
+    .section-label::before{right:calc(50% + 60px)}
+    .section-label::after{left:calc(50% + 60px)}
+
+    /* ── Footer ── */
+    .footer{
+      margin-top:48px;text-align:center;
+      font-size:12px;color:var(--text-muted);
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .footer a{color:var(--text);text-decoration:underline;text-underline-offset:3px}
+    .footer a:hover{color:var(--accent)}
+    .footer .social-row{display:flex;gap:16px;justify-content:center;margin-top:8px}
+    .footer .social-row a{
+      width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+      background:rgba(255,255,255,0.04);border-radius:50%;
+      text-decoration:none;transition:all var(--transition);
+    }
+    .footer .social-row a:hover{
+      background:rgba(59,50,224,0.2);
+      box-shadow:0 0 16px var(--accent-glow);
+    }
+
+    /* ── Glow orb behind priority card ── */
+    .glow-orb{
+      position:fixed;z-index:0;pointer-events:none;
+      width:300px;height:300px;border-radius:50%;
+      background:radial-gradient(circle, rgba(59,50,224,0.12), transparent 70%);
+      filter:blur(40px);
+      top:50%;left:50%;transform:translate(-50%,-50%);
+      animation:orbPulse 6s ease-in-out infinite;
+    }
+    @keyframes orbPulse{
+      0%,100%{opacity:0.5;transform:translate(-50%,-50%) scale(1)}
+      50%{opacity:0.8;transform:translate(-50%,-50%) scale(1.2)}
+    }
+
+    /* ── Responsive ── */
+    @media(max-width:480px){
+      .container{padding:40px 16px 32px}
+      .logo{font-size:26px}
+      .link-card{padding:14px 16px}
+      .link-card .icon{width:38px;height:38px;font-size:18px}
+    }
+  </style>
+</head>
+<body>
+
+<div class="glow-orb"></div>
+<canvas id="particles"></canvas>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">Fatec System</div>
+    <div class="tagline">Precision Assembly &amp; Motion Control</div>
+  </div>
+
+  <!-- Priority Links -->
+  <div class="links">
+    <a href="deprag.html" class="link-card priority" data-tilt>
+      <div class="icon">🔧</div>
+      <div class="info">
+        <div class="title">DEPRAG — 정밀 공압 공구 · 자동화</div>
+        <div class="desc">스크류드라이버, 스핀들, 피드 시스템</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a href="wittenstein.html" class="link-card priority" data-tilt>
+      <div class="icon">⚙️</div>
+      <div class="info">
+        <div class="title">WITTENSTEIN alpha — 서보·기어·모션</div>
+        <div class="desc">저백래시 기어, 서보 액추에이터, galaxie®</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a href="products.html" class="link-card" data-tilt>
+      <div class="icon">📋</div>
+      <div class="info">
+        <div class="title">전체 제품 카탈로그</div>
+        <div class="desc">100종 이상의 제품 — 사양, 적용 사례</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <!-- Divider: Action -->
+  <div class="section-label">바로 연결</div>
+
+  <div class="links">
+    <a href="contact.html" class="link-card" data-tilt>
+      <div class="icon">📞</div>
+      <div class="info">
+        <div class="title">기술 상담 신청</div>
+        <div class="desc">엔지니어가 24시간 내 연락드립니다</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a href="assembly.html" class="link-card" data-tilt>
+      <div class="icon">🏭</div>
+      <div class="info">
+        <div class="title">조립 시스템 · 턴키 솔루션</div>
+        <div class="desc">자동 조립 셀, 컨베이어, 검사 장비</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a href="blog/" class="link-card" data-tilt>
+      <div class="icon">📖</div>
+      <div class="info">
+        <div class="title">적용 사례 · 기술 블로그</div>
+        <div class="desc">현장 레퍼런스, 기술 인사이트</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <!-- Divider: Connect -->
+  <div class="section-label">팔로우</div>
+
+  <div class="links">
+    <a href="https://www.youtube.com/@fatecsystem" target="_blank" rel="noopener" class="link-card" data-tilt>
+      <div class="icon">▶️</div>
+      <div class="info">
+        <div class="title">YouTube — 제품 데모 · 기술 세미나</div>
+        <div class="desc">영상으로 보는 DEPRAG · WITTENSTEIN</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a href="https://linkedin.com/company/fatec-system" target="_blank" rel="noopener" class="link-card" data-tilt>
+      <div class="icon">💼</div>
+      <div class="info">
+        <div class="title">LinkedIn — 산업 네트워크</div>
+        <div class="desc">프로젝트 업데이트, 채용, 파트너십</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="social-row">
+      <a href="https://www.youtube.com/@fatecsystem" target="_blank" rel="noopener" title="YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 00.5 6.19 31.6 31.6 0 000 12a31.6 31.6 0 00.5 5.81 3.02 3.02 0 002.12 2.14c1.88.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 002.12-2.14A31.6 31.6 0 0024 12a31.6 31.6 0 00-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+      </a>
+      <a href="https://linkedin.com/company/fatec-system" target="_blank" rel="noopener" title="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.44-2.14 2.94v5.67H9.35V9h3.42v1.56h.05a3.75 3.75 0 013.37-1.85c3.6 0 4.26 2.37 4.26 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM3.56 20.45h3.56V9H3.56v11.45z"/></svg>
+      </a>
+    </div>
+    <a href="mailto:info@fatec.co.kr">info@fatec.co.kr</a>
+    <span style="margin-top:16px;font-size:11px">© 2026 Fatec System. All rights reserved.</span>
+  </div>
+
+</div><!-- .container -->
+
+<!-- ═══════════ 3D Tilt + Particle Background ═══════════ -->
+<script>
+// ── 3D Tilt on cards ──
+document.querySelectorAll('[data-tilt]').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
+    card.style.transform = `perspective(800px) translateY(-2px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(800px) rotateX(0) rotateY(0)';
+  });
+});
+
+// ── Particle background ──
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize(); window.addEventListener('resize', resize);
+
+class Particle {
+  constructor(){
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 1.2 + 0.3;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+    this.opacity = Math.random() * 0.5 + 0.2;
+  }
+  update(){
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if(this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+    if(this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+for(let i = 0; i < 60; i++) particles.push(new Particle());
+
+function animate(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ── Mouse parallax on glow orb ──
+const orb = document.querySelector('.glow-orb');
+document.addEventListener('mousemove', e => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 30;
+  const y = (e.clientY / window.innerHeight - 0.5) * 30;
+  orb.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+});
+</script>
+
+</body>
+</html>
